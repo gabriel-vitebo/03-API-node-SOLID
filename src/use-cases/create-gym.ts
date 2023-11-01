@@ -9,7 +9,7 @@ interface CreateGymUseCaseRequest {
   longitude: number
 }
 
-interface CreateGymUserCaseResponse {
+interface CreateGymUseCaseResponse {
   gym: Gym
 }
 
@@ -22,7 +22,7 @@ export class CreateGymUseCase {
     phone,
     latitude,
     longitude,
-  }: CreateGymUseCaseRequest): Promise<CreateGymUserCaseResponse> {
+  }: CreateGymUseCaseRequest): Promise<CreateGymUseCaseResponse> {
     const gym = await this.gymsRepository.create({
       title,
       description,
