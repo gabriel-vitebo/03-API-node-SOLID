@@ -1,14 +1,10 @@
 import { expect, describe, it, beforeEach } from 'vitest'
 import { InMemoryGymsRepository } from '@/repositores/in-memory/in-memory-gyms-repository'
 import { SearchGymsUseCase } from './search-gyms'
+import { coordinates } from '@/utils/coordinates'
 
 let gymsRepository: InMemoryGymsRepository
 let sut: SearchGymsUseCase
-
-const homeCord = {
-  latitude: -23.1792897,
-  longitude: -45.8234079,
-}
 
 describe('Search Gyms Use Case', () => {
   beforeEach(() => {
@@ -21,16 +17,16 @@ describe('Search Gyms Use Case', () => {
       title: 'JavaScript Gym',
       description: null,
       phone: null,
-      latitude: homeCord.latitude,
-      longitude: homeCord.longitude,
+      latitude: coordinates.userCoord.latitude,
+      longitude: coordinates.userCoord.longitude,
     })
 
     await gymsRepository.create({
       title: 'TypeScript Gym',
       description: null,
       phone: null,
-      latitude: homeCord.latitude,
-      longitude: homeCord.longitude,
+      latitude: coordinates.userCoord.latitude,
+      longitude: coordinates.userCoord.longitude,
     })
 
     const { gyms } = await sut.execute({
@@ -48,8 +44,8 @@ describe('Search Gyms Use Case', () => {
         title: `JavaScript Gym ${i}`,
         description: null,
         phone: null,
-        latitude: homeCord.latitude,
-        longitude: homeCord.longitude,
+        latitude: coordinates.userCoord.latitude,
+        longitude: coordinates.userCoord.longitude,
       })
     }
 

@@ -1,14 +1,10 @@
 import { expect, describe, it, beforeEach } from 'vitest'
 import { InMemoryGymsRepository } from '@/repositores/in-memory/in-memory-gyms-repository'
 import { CreateGymUseCase } from './create-gym'
+import { coordinates } from '@/utils/coordinates'
 
 let gymsRepository: InMemoryGymsRepository
 let sut: CreateGymUseCase
-
-const homeCord = {
-  latitude: -23.1792897,
-  longitude: -45.8234079,
-}
 
 describe('Create gym Use Case', () => {
   beforeEach(() => {
@@ -21,8 +17,8 @@ describe('Create gym Use Case', () => {
       title: 'Vitebo Gym',
       description: null,
       phone: null,
-      latitude: homeCord.latitude,
-      longitude: homeCord.longitude,
+      latitude: coordinates.userCoord.latitude,
+      longitude: coordinates.userCoord.latitude,
     })
 
     expect(gym.id).toEqual(expect.any(String))

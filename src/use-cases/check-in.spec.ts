@@ -5,20 +5,11 @@ import { InMemoryGymsRepository } from '@/repositores/in-memory/in-memory-gyms-r
 import { Decimal } from '@prisma/client/runtime/library'
 import { MaxNumberOfCheckInsError } from './errors/max-number-of-check-ins-error'
 import { MaxDistanceError } from './errors/max-distance-error'
+import { coordinates } from '@/utils/coordinates'
 
 let checkInsRepository: InMemoryCheckInsRepository
 let gymsRepository: InMemoryGymsRepository
 let sut: CheckInUseCase
-
-const homeCord = {
-  latitude: -23.1792897,
-  longitude: -45.8234079,
-}
-
-const spCord = {
-  latitude: -23.2018563,
-  longitude: -45.90287,
-}
 
 describe('Check-in Use Case', () => {
   beforeEach(async () => {
@@ -31,8 +22,8 @@ describe('Check-in Use Case', () => {
       title: 'Academia Vitebo',
       description: '',
       phone: '',
-      latitude: homeCord.latitude,
-      longitude: homeCord.longitude,
+      latitude: coordinates.userCoord.latitude,
+      longitude: coordinates.userCoord.longitude,
     })
 
     vi.useFakeTimers()
@@ -46,8 +37,8 @@ describe('Check-in Use Case', () => {
     const { checkIn } = await sut.execute({
       gym_id: 'gym-01',
       user_id: 'user-01',
-      userLatitude: homeCord.latitude,
-      userLongitude: homeCord.longitude,
+      userLatitude: coordinates.userCoord.latitude,
+      userLongitude: coordinates.userCoord.longitude,
     })
 
     expect(checkIn.id).toEqual(expect.any(String))
@@ -59,16 +50,16 @@ describe('Check-in Use Case', () => {
     await sut.execute({
       gym_id: 'gym-01',
       user_id: 'user-01',
-      userLatitude: homeCord.latitude,
-      userLongitude: homeCord.longitude,
+      userLatitude: coordinates.userCoord.latitude,
+      userLongitude: coordinates.userCoord.longitude,
     })
 
     await expect(() =>
       sut.execute({
         gym_id: 'gym-01',
         user_id: 'user-01',
-        userLatitude: homeCord.latitude,
-        userLongitude: homeCord.longitude,
+        userLatitude: coordinates.userCoord.latitude,
+        userLongitude: coordinates.userCoord.longitude,
       }),
     ).rejects.toBeInstanceOf(MaxNumberOfCheckInsError)
   })
@@ -79,8 +70,8 @@ describe('Check-in Use Case', () => {
     await sut.execute({
       gym_id: 'gym-01',
       user_id: 'user-01',
-      userLatitude: homeCord.latitude,
-      userLongitude: homeCord.longitude,
+      userLatitude: coordinates.userCoord.latitude,
+      userLongitude: coordinates.userCoord.longitude,
     })
 
     vi.setSystemTime(new Date(2022, 0, 21, 8, 0, 0))
@@ -88,8 +79,8 @@ describe('Check-in Use Case', () => {
     const { checkIn } = await sut.execute({
       gym_id: 'gym-01',
       user_id: 'user-01',
-      userLatitude: homeCord.latitude,
-      userLongitude: homeCord.longitude,
+      userLatitude: coordinates.userCoord.latitude,
+      userLongitude: coordinates.userCoord.longitude,
     })
 
     expect(checkIn.id).toEqual(expect.any(String))
@@ -101,16 +92,16 @@ describe('Check-in Use Case', () => {
       title: 'Academia Vitebo',
       description: '',
       phone: '',
-      latitude: new Decimal(spCord.latitude),
-      longitude: new Decimal(spCord.longitude),
+      latitude: new Decimal(coordinates.gymCoord.latitude),
+      longitude: new Decimal(coordinates.gymCoord.longitude),
     })
 
     await expect(() =>
       sut.execute({
         gym_id: 'gym-02',
         user_id: 'user-01',
-        userLatitude: homeCord.latitude,
-        userLongitude: homeCord.longitude,
+        userLatitude: coordinates.userCoord.latitude,
+        userLongitude: coordinates.userCoord.longitude,
       }),
     ).rejects.toBeInstanceOf(MaxDistanceError)
   })
