@@ -17,16 +17,16 @@ describe('Fetch Nearby Gyms Use Case', () => {
       title: 'Near Gym',
       description: null,
       phone: null,
-      latitude: coordinates.userCoord.latitude,
-      longitude: coordinates.userCoord.longitude,
+      latitude: coordinates.gymCoord.latitude,
+      longitude: coordinates.gymCoord.longitude,
     })
 
     await gymsRepository.create({
       title: 'Far Gym',
       description: null,
       phone: null,
-      latitude: coordinates.gymCoord.latitude,
-      longitude: coordinates.gymCoord.longitude,
+      latitude: coordinates.gymFarCoord.latitude,
+      longitude: coordinates.gymFarCoord.longitude,
     })
 
     const { gyms } = await sut.execute({

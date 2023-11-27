@@ -92,8 +92,8 @@ describe('Check-in Use Case', () => {
       title: 'Academia Vitebo',
       description: '',
       phone: '',
-      latitude: new Decimal(coordinates.gymCoord.latitude),
-      longitude: new Decimal(coordinates.gymCoord.longitude),
+      latitude: new Decimal(coordinates.gymFarCoord.latitude),
+      longitude: new Decimal(coordinates.gymFarCoord.longitude),
     })
 
     await expect(() =>
