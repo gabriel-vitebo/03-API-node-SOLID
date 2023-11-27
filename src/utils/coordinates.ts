@@ -10,4 +10,10 @@ export const coordinates = {
     latitude: -22.8275039,
     longitude: -45.2203266,
   },
+
+  // São jose dos campos - SP
+  gymFarCoord: {
+    latitude: -23.1799431,
+    longitude: -45.8233639,
+  },
 }
