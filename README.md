@@ -49,15 +49,17 @@ na sua máquina.
   - Se tudo der certo, a aplicação já esta rodando na sua máquina pronto para testar
 
 ### Executando os testes
-  - Ambos os testes, se você colocar um `:watch` na frente, os testes executaram a cada alteração no código
+  - Ambos os testes, se você colocar um `:watch` na frente, os testes vao executar a cada alteração no código
   - Para executar os testes unitários:
     ```
     npm run test
     ```
+    ![Teste Unitarios](.github/files/imagetwo.png)
   - Para executar os testes E2E:
     ```
     npm run test:e2e
     ```
+    ![Teste E2E](.github/files/imageOne.png)
 
 ### Utilizando a API
 

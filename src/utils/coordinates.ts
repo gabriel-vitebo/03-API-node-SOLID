@@ -1,14 +1,14 @@
 export const coordinates = {
-  // São José dos campos - SP
+  // Pinheiros - SP
   userCoord: {
-    latitude: -23.1799431,
-    longitude: -45.8233639,
+    latitude: -23.5632755,
+    longitude: -46.6867963,
   },
 
-  // São José dos Campos - SP
+  // Pinheiros - SP
   gymCoord: {
-    latitude: -23.1799431,
-    longitude: -45.8233639,
+    latitude: -23.5635196,
+    longitude: -46.6875853,
   },
 
   // Aparecida - SP
